@@ -1,10 +1,9 @@
-import React, { Component, FormEvent, MouseEvent } from 'react';
-import './App.css';
+import React, { Component, MouseEvent } from 'react';
 import {
   StartupFeature,
   StartupFeatureType,
   AllFeatures
-} from './models/Features';
+} from '../models/Features';
 import FeatureChecklist from './FeatureChecklist';
 import {
   StartupComponent,
@@ -12,7 +11,7 @@ import {
   StartupComponentName,
   AllComponentsAndModules,
   StartupRecipePart
-} from './models/Components';
+} from '../models/Components';
 import ComponentCard from './ComponentCard';
 import { Grid } from '@material-ui/core';
 
@@ -41,10 +40,14 @@ export class StartupComponentVM implements StartupComponent {
     let iconFolder, iconName;
     if (component.type === StartupComponentType.Module) {
       iconFolder = 'modules';
-      iconName = component.name.slice(0, component.name.length - 6);
+      iconName = component.name
+        .slice(0, component.name.length - 6)
+        .toLocaleLowerCase();
     } else {
       iconFolder = 'components';
-      iconName = component.name.slice(0, component.name.length - 9);
+      iconName = component.name
+        .slice(0, component.name.length - 9)
+        .toLocaleLowerCase();
     }
     this.imgPath = `./icons/${iconFolder}/${iconName}.png`;
   }
@@ -73,9 +76,11 @@ class App extends Component<{}, State> {
 
   render() {
     let componentCountList = getComponentVMMap(AllComponentsAndModules);
+    //For each of the features
     for (const feature of this.state.featureVMList) {
       if (feature.count <= 0) continue;
 
+      //For each piece of the feature recipe
       for (const recipePiece of feature.recipe) {
         updateComponentCount(componentCountList, recipePiece, feature.count);
       }
@@ -88,14 +93,16 @@ class App extends Component<{}, State> {
           onFeatureListUpdated={this.onFeatureListUpdated}
         />
         <Grid container spacing={8} justify="center" alignItems="stretch">
-          {componentVMs.map(componentVM => (
-            <Grid key={componentVM.name} item md={1}>
-              <ComponentCard
-                componentVM={componentVM}
-                imgPath={componentVM.imgPath}
-              />
-            </Grid>
-          ))}
+          {componentVMs
+            .filter(componentVM => componentVM.count > 0)
+            .map(componentVM => (
+              <Grid key={componentVM.name} item md={1}>
+                <ComponentCard
+                  componentVM={componentVM}
+                  imgPath={componentVM.imgPath}
+                />
+              </Grid>
+            ))}
         </Grid>
       </div>
     );
@@ -117,15 +124,18 @@ class App extends Component<{}, State> {
 }
 
 function updateComponentCount(
-  componentCountList: Map<StartupComponentName, StartupComponentVM>,
+  componentCountMap: Map<StartupComponentName, StartupComponentVM>,
   recipePiece: StartupRecipePart,
   multiplier: number
 ): void {
-  // componentCountList.set(component.name, componentCountList.get(component.name)!.count - 1)
-  let componentInList = componentCountList.get(recipePiece.component.name)!;
-  componentInList.count += recipePiece.count * multiplier;
-  for (const innerRecipePiece of componentInList.recipe) {
-    updateComponentCount(componentCountList, innerRecipePiece, multiplier);
+  let componentVM = componentCountMap.get(recipePiece.component.name)!;
+  componentVM.count += recipePiece.count * multiplier;
+  for (const innerRecipePiece of componentVM.recipe) {
+    updateComponentCount(
+      componentCountMap,
+      innerRecipePiece,
+      multiplier * recipePiece.count
+    );
   }
 }
 

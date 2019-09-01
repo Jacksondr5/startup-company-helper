@@ -2,19 +2,31 @@ import {
   BackendModule,
   InputModule,
   FrontendModule,
-  VideoPlaybackModule,
-  BandwidthCompressionModule,
   DatabaseLayerModule,
   StorageModule,
   PaymentGatewayModule,
   EmailModule,
-  InterfaceModule,
   StartupRecipePart,
   UIComponent,
   BackendComponent,
   BlueprintComponent,
   GraphicsComponent,
-  NetworkComponent
+  NetworkComponent,
+  ContentManagementModule,
+  UISetModule,
+  DesignGuidelinesModule,
+  ApiClientModule,
+  NotificationModule,
+  CodeOptimizationModule,
+  FirewallComponent,
+  VirtualHardwareComponent,
+  OperatingSystemComponent,
+  ProcessManagementComponent,
+  CronJobComponent,
+  ContinuousIntegrationComponent,
+  ClusterModule,
+  SwarmManagementModule,
+  VirtualContainerModule
 } from './Components';
 
 export interface StartupFeature {
@@ -23,23 +35,24 @@ export interface StartupFeature {
 }
 
 export enum StartupFeatureType {
-  CommentFunctionality = 'CommentFunctionality',
   LandingPage = 'LandingPage',
-  LiveStreaming = 'LiveStreaming',
-  OfflineContent = 'OfflineContent',
-  PaymentSystem = 'PaymentSystem',
+  ItemListing = 'ItemListing',
+  CommentFunctionality = 'CommentFunctionality',
   SharingFunctionality = 'SharingFunctionality',
-  VideoEditor = 'VideoEditor',
-  VideoFunctionality = 'VideoFunctionality'
+  ImageUpload = 'ImageUpload',
+  PaymentSystem = 'PaymentSystem',
+  ChatSystem = 'ChatSystem',
+  AdBlockerObfuscator = 'AdBlockerObfuscator',
+  SmallServer = 'SmallServer',
+  TwoUServer = 'TwoUServer',
+  BladeServer = 'BladeServer',
+  XServer = 'XServer'
+  // LiveStreaming = 'LiveStreaming',
+  // OfflineContent = 'OfflineContent',
+  // VideoEditor = 'VideoEditor',
+  // VideoFunctionality = 'VideoFunctionality'
 }
 
-export const CommentFunctionalityFeature: StartupFeature = {
-  name: StartupFeatureType.CommentFunctionality,
-  recipe: [
-    { component: BackendModule, count: 2 },
-    { component: InputModule, count: 2 }
-  ]
-};
 export const LandingPageFeature: StartupFeature = {
   name: StartupFeatureType.LandingPage,
   recipe: [
@@ -49,65 +62,120 @@ export const LandingPageFeature: StartupFeature = {
     { component: GraphicsComponent, count: 1 }
   ]
 };
-export const LiveStreamingFeature: StartupFeature = {
-  name: StartupFeatureType.LiveStreaming,
+export const ItemListingFeature: StartupFeature = {
+  name: StartupFeatureType.ItemListing,
   recipe: [
+    { component: BackendModule, count: 1 },
     { component: FrontendModule, count: 1 },
-    { component: VideoPlaybackModule, count: 1 },
-    { component: BandwidthCompressionModule, count: 1 }
+    { component: ContentManagementModule, count: 1 }
   ]
 };
-export const OfflineContentFeature: StartupFeature = {
-  name: StartupFeatureType.OfflineContent,
+export const CommentFunctionality: StartupFeature = {
+  name: StartupFeatureType.CommentFunctionality,
   recipe: [
-    { component: FrontendModule, count: 1 },
-    { component: DatabaseLayerModule, count: 1 },
-    { component: StorageModule, count: 1 },
-    { component: BandwidthCompressionModule, count: 1 }
-  ]
-};
-export const PaymentSystemFeature: StartupFeature = {
-  name: StartupFeatureType.PaymentSystem,
-  recipe: [
-    { component: BackendModule, count: 2 },
-    { component: PaymentGatewayModule, count: 1 },
-    { component: EmailModule, count: 1 }
+    { component: BackendModule, count: 3 },
+    { component: InputModule, count: 3 }
   ]
 };
 export const SharingFunctionalityFeature: StartupFeature = {
   name: StartupFeatureType.SharingFunctionality,
   recipe: [
-    { component: BackendModule, count: 1 },
+    { component: BackendModule, count: 2 },
     { component: FrontendModule, count: 1 },
-    { component: InputModule, count: 2 }
+    { component: InputModule, count: 1 },
+    { component: EmailModule, count: 2 },
+    { component: UISetModule, count: 1 }
   ]
 };
-export const VideoEditorFeature: StartupFeature = {
-  name: StartupFeatureType.VideoEditor,
+export const ImageUploadFeature: StartupFeature = {
+  name: StartupFeatureType.ImageUpload,
   recipe: [
-    { component: VideoPlaybackModule, count: 2 },
-    { component: StorageModule, count: 1 },
-    { component: BandwidthCompressionModule, count: 1 },
-    { component: InterfaceModule, count: 1 },
-    { component: BackendModule, count: 3 }
+    { component: InputModule, count: 1 },
+    { component: StorageModule, count: 2 },
+    { component: DatabaseLayerModule, count: 2 },
+    { component: FrontendModule, count: 1 },
+    { component: UISetModule, count: 1 }
   ]
 };
-export const VideoFunctionalityFeature: StartupFeature = {
-  name: StartupFeatureType.VideoFunctionality,
+export const PaymentSystemFeature: StartupFeature = {
+  name: StartupFeatureType.PaymentSystem,
   recipe: [
+    { component: DatabaseLayerModule, count: 2 },
     { component: FrontendModule, count: 1 },
-    { component: StorageModule, count: 1 },
-    { component: NetworkComponent, count: 1 }
+    { component: PaymentGatewayModule, count: 1 },
+    { component: EmailModule, count: 1 },
+    { component: DesignGuidelinesModule, count: 1 }
+  ]
+};
+export const ChatSystemFeature: StartupFeature = {
+  name: StartupFeatureType.ChatSystem,
+  recipe: [
+    { component: DatabaseLayerModule, count: 1 },
+    { component: InputModule, count: 1 },
+    { component: NotificationModule, count: 2 },
+    { component: NetworkComponent, count: 3 },
+    { component: ApiClientModule, count: 2 },
+    { component: DesignGuidelinesModule, count: 1 }
+  ]
+};
+export const AdBlockerObfuscatorFeature: StartupFeature = {
+  name: StartupFeatureType.AdBlockerObfuscator,
+  recipe: [
+    { component: CodeOptimizationModule, count: 2 },
+    { component: UISetModule, count: 4 },
+    { component: ApiClientModule, count: 2 }
   ]
 };
 
+export const SmallServerFeature: StartupFeature = {
+  name: StartupFeatureType.SmallServer,
+  recipe: [
+    { component: FirewallComponent, count: 2 },
+    { component: VirtualHardwareComponent, count: 2 },
+    { component: OperatingSystemComponent, count: 2 }
+  ]
+};
+
+export const TwoUServerFeature: StartupFeature = {
+  name: StartupFeatureType.TwoUServer,
+  recipe: [
+    { component: FirewallComponent, count: 4 },
+    { component: VirtualHardwareComponent, count: 4 },
+    { component: OperatingSystemComponent, count: 4 },
+    { component: ProcessManagementComponent, count: 2 },
+    { component: CronJobComponent, count: 2 }
+  ]
+};
+export const BladeServerFeature: StartupFeature = {
+  name: StartupFeatureType.BladeServer,
+  recipe: [
+    { component: FirewallComponent, count: 15 },
+    { component: VirtualHardwareComponent, count: 15 },
+    { component: OperatingSystemComponent, count: 15 },
+    { component: ProcessManagementComponent, count: 4 },
+    { component: CronJobComponent, count: 4 },
+    { component: ContinuousIntegrationComponent, count: 4 }
+  ]
+};
+export const XServerFeature: StartupFeature = {
+  name: StartupFeatureType.XServer,
+  recipe: [
+    { component: VirtualContainerModule, count: 8 },
+    { component: ClusterModule, count: 5 },
+    { component: SwarmManagementModule, count: 5 }
+  ]
+};
 export const AllFeatures: StartupFeature[] = [
-  CommentFunctionalityFeature,
   LandingPageFeature,
-  LiveStreamingFeature,
-  OfflineContentFeature,
-  PaymentSystemFeature,
+  ItemListingFeature,
+  CommentFunctionality,
   SharingFunctionalityFeature,
-  VideoEditorFeature,
-  VideoFunctionalityFeature
+  ImageUploadFeature,
+  PaymentSystemFeature,
+  ChatSystemFeature,
+  AdBlockerObfuscatorFeature,
+  SmallServerFeature,
+  TwoUServerFeature,
+  BladeServerFeature,
+  XServerFeature
 ];

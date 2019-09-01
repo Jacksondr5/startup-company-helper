@@ -1,9 +1,6 @@
-import React, { FormEvent, MouseEvent } from 'react';
-import { StartupFeatureType } from './models/Features';
+import React, { MouseEvent } from 'react';
+import { StartupFeatureType } from '../models/Features';
 import {
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
   Grid,
   Typography,
   WithStyles,
@@ -34,15 +31,15 @@ const FeatureChecklist = (props: Props) => {
       {props.featureVMList.map(feature => (
         <Grid key={feature.name} className={props.classes.counter} item>
           <Grid container spacing={0}>
-            <Grid item md={3}>
+            <Grid item md={8}>
               <Typography variant="body1">
                 {feature.name.replace(/([A-Z])/g, ' $1')}
               </Typography>
             </Grid>
-            <Grid item md={3}>
+            <Grid item md={2}>
               <Typography variant="body2">{feature.count}</Typography>
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={2}>
               <Grid container direction="column" spacing={0}>
                 <Grid item md={6}>
                   <ArrowUpward

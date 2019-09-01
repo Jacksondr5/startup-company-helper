@@ -1,4 +1,4 @@
-import React, { SFC, FunctionComponent } from 'react';
+import React from 'react';
 import {
   Card,
   CardActionArea,
@@ -11,7 +11,10 @@ import {
 } from '@material-ui/core';
 import { StartupComponentVM } from './App';
 
-const styles = createStyles({ media: {} });
+const styles = createStyles({
+  media: {},
+  card: { height: 250 }
+});
 
 interface Props extends WithStyles<typeof styles> {
   componentVM: StartupComponentVM;
@@ -20,7 +23,7 @@ interface Props extends WithStyles<typeof styles> {
 
 const ComponentCard = (props: Props) => {
   return (
-    <Card>
+    <Card className={props.classes.card}>
       <CardActionArea>
         <CardMedia
           className={props.classes.media}
