@@ -1,6 +1,8 @@
 export interface StartupComponent {
   type: StartupComponentType;
   name: StartupComponentName;
+  productionCost: Number;
+  sortOrder: Number;
   recipe: StartupRecipePart[];
 }
 
@@ -76,194 +78,129 @@ export enum StartupComponentName {
   BehaviorObservationComponent = 'BehaviorObservationComponent'
 }
 
+//Developer Components
 export const UIComponent: StartupComponent = {
   type: StartupComponentType.Component,
   name: StartupComponentName.UIComponent,
+  productionCost: 2,
+  sortOrder: 0,
   recipe: []
 };
 export const BackendComponent: StartupComponent = {
   type: StartupComponentType.Component,
   name: StartupComponentName.BackendComponent,
+  productionCost: 4,
+  sortOrder: 1,
   recipe: []
 };
 export const NetworkComponent: StartupComponent = {
   type: StartupComponentType.Component,
   name: StartupComponentName.NetworkComponent,
+  productionCost: 6,
+  sortOrder: 2,
   recipe: []
 };
 export const DatabaseComponent: StartupComponent = {
   type: StartupComponentType.Component,
   name: StartupComponentName.DatabaseComponent,
+  productionCost: 4,
+  sortOrder: 3,
   recipe: []
 };
 export const VideoComponent: StartupComponent = {
   type: StartupComponentType.Component,
   name: StartupComponentName.VideoComponent,
+  productionCost: 14,
+  sortOrder: 4,
   recipe: []
-};
-export const BlueprintComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.BlueprintComponent,
-  recipe: []
-};
-export const WireframeComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.WireframeComponent,
-  recipe: []
-};
-export const GraphicsComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.GraphicsComponent,
-  recipe: []
-};
-export const UIElementModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.UIElementModule,
-  recipe: [
-    { component: BlueprintComponent, count: 1 },
-    { component: GraphicsComponent, count: 1 }
-  ]
-};
-export const VirtualHardwareComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.VirtualHardwareComponent,
-  recipe: []
-};
-export const OperatingSystemComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.OperatingSystemComponent,
-  recipe: []
-};
-export const FirewallComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.FirewallComponent,
-  recipe: []
-};
-export const InterfaceModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.InterfaceModule,
-  recipe: [
-    { component: UIElementModule, count: 2 },
-    { component: WireframeComponent, count: 1 }
-  ]
-};
-export const FrontendModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.FrontendModule,
-  recipe: [
-    { component: UIElementModule, count: 1 },
-    { component: InterfaceModule, count: 1 }
-  ]
-};
-export const BackendModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.BackendModule,
-  recipe: [
-    { component: BackendComponent, count: 1 },
-    { component: NetworkComponent, count: 1 }
-  ]
-};
-export const InputModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.InputModule,
-  recipe: [
-    { component: UIComponent, count: 1 },
-    { component: BackendComponent, count: 1 }
-  ]
-};
-export const FilesystemComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.FilesystemComponent,
-  recipe: []
-};
-export const StorageModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.StorageModule,
-  recipe: [
-    { component: FilesystemComponent, count: 1 },
-    { component: BackendComponent, count: 1 }
-  ]
-};
-export const ContentManagementModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.ContentManagementModule,
-  recipe: [
-    { component: FrontendModule, count: 1 },
-    { component: InputModule, count: 1 },
-    { component: BackendModule, count: 1 }
-  ]
-};
-export const VideoPlaybackModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.VideoPlaybackModule,
-  recipe: [
-    { component: VideoComponent, count: 1 },
-    { component: FrontendModule, count: 1 },
-    { component: BackendModule, count: 1 }
-  ]
 };
 export const SemanticComponent: StartupComponent = {
   type: StartupComponentType.Component,
   name: StartupComponentName.SemanticComponent,
+  productionCost: 3,
+  sortOrder: 5,
   recipe: []
 };
 export const SmtpComponent: StartupComponent = {
   type: StartupComponentType.Component,
   name: StartupComponentName.SmtpComponent,
+  productionCost: 8,
+  sortOrder: 6,
   recipe: []
 };
 export const EncryptionComponent: StartupComponent = {
   type: StartupComponentType.Component,
   name: StartupComponentName.EncryptionComponent,
+  productionCost: 8,
+  sortOrder: 7,
+  recipe: []
+};
+export const FilesystemComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.FilesystemComponent,
+  productionCost: 4,
+  sortOrder: 8,
+  recipe: []
+};
+export const I18nComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.I18nComponent,
+  productionCost: 4,
+  sortOrder: 9,
+  recipe: []
+};
+export const SearchAlgorithmComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.SearchAlgorithmComponent,
+  productionCost: 12,
+  sortOrder: 10,
+  recipe: []
+};
+export const CompressionComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.CompressionComponent,
+  productionCost: 8,
+  sortOrder: 8,
   recipe: []
 };
 
-export const SeoModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.SeoModule,
-  recipe: [
-    { component: FrontendModule, count: 1 },
-    { component: SemanticComponent, count: 1 }
-  ]
+//Designer Components
+export const BlueprintComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.BlueprintComponent,
+  productionCost: 2,
+  sortOrder: 0,
+  recipe: []
 };
-export const EmailModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.EmailModule,
-  recipe: [
-    { component: SmtpComponent, count: 1 },
-    { component: BackendComponent, count: 1 }
-  ]
+export const WireframeComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.WireframeComponent,
+  productionCost: 3,
+  sortOrder: 1,
+  recipe: []
 };
-export const DatabaseLayerModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.DatabaseLayerModule,
-  recipe: [
-    { component: DatabaseComponent, count: 1 },
-    { component: BackendComponent, count: 1 },
-    { component: NetworkComponent, count: 1 }
-  ]
+export const GraphicsComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.GraphicsComponent,
+  productionCost: 4,
+  sortOrder: 2,
+  recipe: []
 };
-export const NotificationModule: StartupComponent = {
+export const UIElementModule: StartupComponent = {
   type: StartupComponentType.Module,
-  name: StartupComponentName.NotificationModule,
+  name: StartupComponentName.UIElementModule,
+  productionCost: 6,
+  sortOrder: 3,
   recipe: [
-    { component: UIComponent, count: 1 },
-    { component: BackendComponent, count: 1 },
-    { component: EmailModule, count: 1 }
-  ]
-};
-export const AuthenticationModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.AuthenticationModule,
-  recipe: [
-    { component: DatabaseComponent, count: 1 },
-    { component: EncryptionComponent, count: 1 },
-    { component: BackendModule, count: 1 }
+    { component: BlueprintComponent, count: 1 },
+    { component: GraphicsComponent, count: 1 }
   ]
 };
 export const UISetModule: StartupComponent = {
   type: StartupComponentType.Module,
   name: StartupComponentName.UISetModule,
+  productionCost: 18,
+  sortOrder: 4,
   recipe: [
     { component: WireframeComponent, count: 2 },
     { component: UIElementModule, count: 2 }
@@ -272,156 +209,79 @@ export const UISetModule: StartupComponent = {
 export const ResponsiveUIModule: StartupComponent = {
   type: StartupComponentType.Module,
   name: StartupComponentName.ResponsiveUIModule,
+  productionCost: 18,
+  sortOrder: 5,
   recipe: [
     { component: WireframeComponent, count: 2 },
     { component: UIElementModule, count: 2 }
   ]
 };
-export const CopywritingComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.CopywritingComponent,
-  recipe: []
-};
-export const TextFormatComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.TextFormatComponent,
-  recipe: []
-};
-export const ImageFormatComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.ImageFormatComponent,
-  recipe: []
-};
-export const UserFeedbackComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.UserFeedbackComponent,
-  recipe: []
-};
-export const SurveyComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.SurveyComponent,
-  recipe: []
-};
-export const PhoneInterviewComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.PhoneInterviewComponent,
-  recipe: []
-};
-export const ProcessManagementComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.ProcessManagementComponent,
-  recipe: []
-};
-export const ContinuousIntegrationComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.ContinuousIntegrationComponent,
-  recipe: []
-};
-export const CronJobComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.CronJobComponent,
-  recipe: []
-};
-export const I18nComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.I18nComponent,
-  recipe: []
-};
-export const SearchAlgorithmComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.SearchAlgorithmComponent,
-  recipe: []
-};
-export const CompressionComponent: StartupComponent = {
-  type: StartupComponentType.Component,
-  name: StartupComponentName.CompressionComponent,
-  recipe: []
-};
-export const ApiClientModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.ApiClientModule,
-  recipe: [
-    { component: BackendModule, count: 1 },
-    { component: DatabaseLayerModule, count: 1 },
-    { component: CompressionComponent, count: 2 }
-  ]
-};
-export const PaymentGatewayModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.PaymentGatewayModule,
-  recipe: [
-    { component: DatabaseLayerModule, count: 1 },
-    { component: ApiClientModule, count: 1 },
-    { component: AuthenticationModule, count: 1 }
-  ]
-};
-export const LocalizationModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.LocalizationModule,
-  recipe: [
-    { component: I18nComponent, count: 1 },
-    { component: FrontendModule, count: 1 }
-  ]
-};
-export const SearchModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.SearchModule,
-  recipe: [
-    { component: DatabaseComponent, count: 1 },
-    { component: SearchAlgorithmComponent, count: 1 },
-    { component: BackendComponent, count: 1 }
-  ]
-};
-export const BandwidthCompressionModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.BandwidthCompressionModule,
-  recipe: [
-    { component: CompressionComponent, count: 1 },
-    { component: NetworkComponent, count: 1 },
-    { component: BackendComponent, count: 1 }
-  ]
-};
-export const CodeOptimizationModule: StartupComponent = {
-  type: StartupComponentType.Module,
-  name: StartupComponentName.CodeOptimizationModule,
-  recipe: [
-    { component: BackendModule, count: 2 },
-    { component: DatabaseLayerModule, count: 2 },
-    { component: FrontendModule, count: 2 }
-  ]
-};
-
 export const DocumentationComponent: StartupComponent = {
   type: StartupComponentType.Component,
   name: StartupComponentName.DocumentationComponent,
+  productionCost: 12,
+  sortOrder: 6,
   recipe: []
 };
 export const DesignGuidelinesModule: StartupComponent = {
   type: StartupComponentType.Module,
   name: StartupComponentName.DesignGuidelinesModule,
+  productionCost: 90,
+  sortOrder: 7,
   recipe: [
     { component: DocumentationComponent, count: 3 },
     { component: ResponsiveUIModule, count: 3 }
   ]
 };
-export const VideoFormatComponent: StartupComponent = {
+
+//SysAdmin Components
+export const VirtualHardwareComponent: StartupComponent = {
   type: StartupComponentType.Component,
-  name: StartupComponentName.VideoFormatComponent,
+  name: StartupComponentName.VirtualHardwareComponent,
+  productionCost: 4,
+  sortOrder: 0,
   recipe: []
 };
-export const AudioFormatComponent: StartupComponent = {
+export const OperatingSystemComponent: StartupComponent = {
   type: StartupComponentType.Component,
-  name: StartupComponentName.AudioFormatComponent,
+  name: StartupComponentName.OperatingSystemComponent,
+  productionCost: 4,
+  sortOrder: 1,
   recipe: []
 };
-export const AnalyticsResearchComponent: StartupComponent = {
+export const FirewallComponent: StartupComponent = {
   type: StartupComponentType.Component,
-  name: StartupComponentName.AnalyticsResearchComponent,
+  name: StartupComponentName.FirewallComponent,
+  productionCost: 4,
+  sortOrder: 2,
+  recipe: []
+};
+export const ProcessManagementComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.ProcessManagementComponent,
+  productionCost: 6,
+  sortOrder: 3,
+  recipe: []
+};
+export const ContinuousIntegrationComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.ContinuousIntegrationComponent,
+  productionCost: 8,
+  sortOrder: 4,
+  recipe: []
+};
+export const CronJobComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.CronJobComponent,
+  productionCost: 3,
+  sortOrder: 5,
   recipe: []
 };
 export const VirtualContainerModule: StartupComponent = {
   type: StartupComponentType.Module,
   name: StartupComponentName.VirtualContainerModule,
+  productionCost: 25,
+  sortOrder: 6,
   recipe: [
     { component: VirtualHardwareComponent, count: 1 },
     { component: OperatingSystemComponent, count: 1 },
@@ -433,6 +293,8 @@ export const VirtualContainerModule: StartupComponent = {
 export const ClusterModule: StartupComponent = {
   type: StartupComponentType.Module,
   name: StartupComponentName.ClusterModule,
+  productionCost: 115,
+  sortOrder: 7,
   recipe: [
     { component: VirtualContainerModule, count: 3 },
     { component: FirewallComponent, count: 10 }
@@ -441,24 +303,289 @@ export const ClusterModule: StartupComponent = {
 export const SwarmManagementModule: StartupComponent = {
   type: StartupComponentType.Module,
   name: StartupComponentName.SwarmManagementModule,
+  productionCost: 140,
+  sortOrder: 8,
   recipe: [
     { component: ClusterModule, count: 1 },
     { component: VirtualContainerModule, count: 1 }
   ]
 };
+
+//LeadDev components
+export const InterfaceModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.InterfaceModule,
+  productionCost: 15,
+  sortOrder: 0,
+  recipe: [
+    { component: UIElementModule, count: 2 },
+    { component: WireframeComponent, count: 1 }
+  ]
+};
+export const FrontendModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.FrontendModule,
+  productionCost: 21,
+  sortOrder: 1,
+  recipe: [
+    { component: UIElementModule, count: 1 },
+    { component: InterfaceModule, count: 1 }
+  ]
+};
+export const BackendModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.BackendModule,
+  productionCost: 10,
+  sortOrder: 2,
+  recipe: [
+    { component: BackendComponent, count: 1 },
+    { component: NetworkComponent, count: 1 }
+  ]
+};
+export const InputModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.InputModule,
+  productionCost: 6,
+  sortOrder: 3,
+  recipe: [
+    { component: UIComponent, count: 1 },
+    { component: BackendComponent, count: 1 }
+  ]
+};
+export const StorageModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.StorageModule,
+  productionCost: 8,
+  sortOrder: 4,
+  recipe: [
+    { component: FilesystemComponent, count: 1 },
+    { component: BackendComponent, count: 1 }
+  ]
+};
+export const ContentManagementModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.ContentManagementModule,
+  productionCost: 37,
+  sortOrder: 5,
+  recipe: [
+    { component: FrontendModule, count: 1 },
+    { component: InputModule, count: 1 },
+    { component: BackendModule, count: 1 }
+  ]
+};
+export const VideoPlaybackModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.VideoPlaybackModule,
+  productionCost: 45,
+  sortOrder: 6,
+  recipe: [
+    { component: VideoComponent, count: 1 },
+    { component: FrontendModule, count: 1 },
+    { component: BackendModule, count: 1 }
+  ]
+};
+export const SeoModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.SeoModule,
+  productionCost: 24,
+  sortOrder: 7,
+  recipe: [
+    { component: FrontendModule, count: 1 },
+    { component: SemanticComponent, count: 1 }
+  ]
+};
+export const EmailModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.EmailModule,
+  productionCost: 12,
+  sortOrder: 8,
+  recipe: [
+    { component: SmtpComponent, count: 1 },
+    { component: BackendComponent, count: 1 }
+  ]
+};
+export const DatabaseLayerModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.DatabaseLayerModule,
+  productionCost: 14,
+  sortOrder: 9,
+  recipe: [
+    { component: DatabaseComponent, count: 1 },
+    { component: BackendComponent, count: 1 },
+    { component: NetworkComponent, count: 1 }
+  ]
+};
+export const NotificationModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.NotificationModule,
+  productionCost: 18,
+  sortOrder: 10,
+  recipe: [
+    { component: UIComponent, count: 1 },
+    { component: BackendComponent, count: 1 },
+    { component: EmailModule, count: 1 }
+  ]
+};
+export const AuthenticationModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.AuthenticationModule,
+  productionCost: 22,
+  sortOrder: 11,
+  recipe: [
+    { component: DatabaseComponent, count: 1 },
+    { component: EncryptionComponent, count: 1 },
+    { component: BackendModule, count: 1 }
+  ]
+};
+export const ApiClientModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.ApiClientModule,
+  productionCost: 40,
+  sortOrder: 17,
+  recipe: [
+    { component: BackendModule, count: 1 },
+    { component: DatabaseLayerModule, count: 1 },
+    { component: CompressionComponent, count: 2 }
+  ]
+};
+export const PaymentGatewayModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.PaymentGatewayModule,
+  productionCost: 76,
+  sortOrder: 12,
+  recipe: [
+    { component: DatabaseLayerModule, count: 1 },
+    { component: ApiClientModule, count: 1 },
+    { component: AuthenticationModule, count: 1 }
+  ]
+};
+export const LocalizationModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.LocalizationModule,
+  productionCost: 25,
+  sortOrder: 13,
+  recipe: [
+    { component: I18nComponent, count: 1 },
+    { component: FrontendModule, count: 1 }
+  ]
+};
+export const SearchModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.SearchModule,
+  productionCost: 20,
+  sortOrder: 14,
+  recipe: [
+    { component: DatabaseComponent, count: 1 },
+    { component: SearchAlgorithmComponent, count: 1 },
+    { component: BackendComponent, count: 1 }
+  ]
+};
+export const BandwidthCompressionModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.BandwidthCompressionModule,
+  productionCost: 18,
+  sortOrder: 15,
+  recipe: [
+    { component: CompressionComponent, count: 1 },
+    { component: NetworkComponent, count: 1 },
+    { component: BackendComponent, count: 1 }
+  ]
+};
+export const CodeOptimizationModule: StartupComponent = {
+  type: StartupComponentType.Module,
+  name: StartupComponentName.CodeOptimizationModule,
+  productionCost: 90,
+  sortOrder: 16,
+  recipe: [
+    { component: BackendModule, count: 2 },
+    { component: DatabaseLayerModule, count: 2 },
+    { component: FrontendModule, count: 2 }
+  ]
+};
+
+//Marketing Components
+export const CopywritingComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.CopywritingComponent,
+  productionCost: 4,
+  sortOrder: 0,
+  recipe: []
+};
+export const TextFormatComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.TextFormatComponent,
+  productionCost: 4,
+  sortOrder: 1,
+  recipe: []
+};
+export const ImageFormatComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.ImageFormatComponent,
+  productionCost: 4,
+  sortOrder: 2,
+  recipe: []
+};
+export const UserFeedbackComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.UserFeedbackComponent,
+  productionCost: 8,
+  sortOrder: 3,
+  recipe: []
+};
+export const SurveyComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.SurveyComponent,
+  productionCost: 4,
+  sortOrder: 4,
+  recipe: []
+};
+export const PhoneInterviewComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.PhoneInterviewComponent,
+  productionCost: 6,
+  sortOrder: 5,
+  recipe: []
+};
+export const VideoFormatComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.VideoFormatComponent,
+  productionCost: 8,
+  sortOrder: 6,
+  recipe: []
+};
+export const AudioFormatComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.AudioFormatComponent,
+  productionCost: 8,
+  sortOrder: 7,
+  recipe: []
+};
+export const AnalyticsResearchComponent: StartupComponent = {
+  type: StartupComponentType.Component,
+  name: StartupComponentName.AnalyticsResearchComponent,
+  productionCost: 12,
+  sortOrder: 8,
+  recipe: []
+};
 export const ContractAgreementComponent: StartupComponent = {
   type: StartupComponentType.Component,
   name: StartupComponentName.ContractAgreementComponent,
+  productionCost: 12,
+  sortOrder: 9,
   recipe: []
 };
 export const ABTestingComponent: StartupComponent = {
   type: StartupComponentType.Component,
   name: StartupComponentName.ABTestingComponent,
+  productionCost: 10,
+  sortOrder: 10,
   recipe: []
 };
 export const BehaviorObservationComponent: StartupComponent = {
   type: StartupComponentType.Component,
   name: StartupComponentName.BehaviorObservationComponent,
+  productionCost: 12,
+  sortOrder: 11,
   recipe: []
 };
 
