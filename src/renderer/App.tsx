@@ -10,7 +10,8 @@ import {
   StartupComponentType,
   StartupComponentName,
   AllComponentsAndModules,
-  StartupRecipePart
+  StartupRecipePart,
+  StartupEmployeeType
 } from '../models/Components';
 import ComponentCard from './ComponentCard';
 import { Grid } from '@material-ui/core';
@@ -29,12 +30,18 @@ export class StartupFeatureVM implements StartupFeature {
 export class StartupComponentVM implements StartupComponent {
   type: StartupComponentType;
   name: StartupComponentName;
+  productionCost: Number;
+  sortOrder: Number;
+  employee: StartupEmployeeType;
   recipe: StartupRecipePart[];
   count: number;
   imgPath: string;
   constructor(component: StartupComponent, count: number) {
     this.type = component.type;
     this.name = component.name;
+    this.productionCost = component.productionCost;
+    this.sortOrder = component.sortOrder;
+    this.employee = component.employee;
     this.recipe = component.recipe;
     this.count = count;
     let iconFolder, iconName;
