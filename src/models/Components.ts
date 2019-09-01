@@ -2,7 +2,9 @@ export interface StartupComponent {
   type: StartupComponentType;
   name: StartupComponentName;
   productionCost: Number;
+  //Needed because API module is out of order
   sortOrder: Number;
+  employee: StartupEmployeeType;
   recipe: StartupRecipePart[];
 }
 
@@ -14,6 +16,15 @@ export interface StartupRecipePart {
 export enum StartupComponentType {
   Component,
   Module
+}
+
+//Values are for sorting
+export enum StartupEmployeeType {
+  Developer = 0,
+  Designer = 1,
+  LeadDeveloper = 2,
+  SysAdmin = 3,
+  Marketer = 4
 }
 
 export enum StartupComponentName {
@@ -84,6 +95,7 @@ export const UIComponent: StartupComponent = {
   name: StartupComponentName.UIComponent,
   productionCost: 2,
   sortOrder: 0,
+  employee: StartupEmployeeType.Developer,
   recipe: []
 };
 export const BackendComponent: StartupComponent = {
@@ -91,6 +103,7 @@ export const BackendComponent: StartupComponent = {
   name: StartupComponentName.BackendComponent,
   productionCost: 4,
   sortOrder: 1,
+  employee: StartupEmployeeType.Developer,
   recipe: []
 };
 export const NetworkComponent: StartupComponent = {
@@ -98,6 +111,7 @@ export const NetworkComponent: StartupComponent = {
   name: StartupComponentName.NetworkComponent,
   productionCost: 6,
   sortOrder: 2,
+  employee: StartupEmployeeType.Developer,
   recipe: []
 };
 export const DatabaseComponent: StartupComponent = {
@@ -105,6 +119,7 @@ export const DatabaseComponent: StartupComponent = {
   name: StartupComponentName.DatabaseComponent,
   productionCost: 4,
   sortOrder: 3,
+  employee: StartupEmployeeType.Developer,
   recipe: []
 };
 export const VideoComponent: StartupComponent = {
@@ -112,6 +127,7 @@ export const VideoComponent: StartupComponent = {
   name: StartupComponentName.VideoComponent,
   productionCost: 14,
   sortOrder: 4,
+  employee: StartupEmployeeType.Developer,
   recipe: []
 };
 export const SemanticComponent: StartupComponent = {
@@ -119,6 +135,7 @@ export const SemanticComponent: StartupComponent = {
   name: StartupComponentName.SemanticComponent,
   productionCost: 3,
   sortOrder: 5,
+  employee: StartupEmployeeType.Developer,
   recipe: []
 };
 export const SmtpComponent: StartupComponent = {
@@ -126,6 +143,7 @@ export const SmtpComponent: StartupComponent = {
   name: StartupComponentName.SmtpComponent,
   productionCost: 8,
   sortOrder: 6,
+  employee: StartupEmployeeType.Developer,
   recipe: []
 };
 export const EncryptionComponent: StartupComponent = {
@@ -133,6 +151,7 @@ export const EncryptionComponent: StartupComponent = {
   name: StartupComponentName.EncryptionComponent,
   productionCost: 8,
   sortOrder: 7,
+  employee: StartupEmployeeType.Developer,
   recipe: []
 };
 export const FilesystemComponent: StartupComponent = {
@@ -140,6 +159,7 @@ export const FilesystemComponent: StartupComponent = {
   name: StartupComponentName.FilesystemComponent,
   productionCost: 4,
   sortOrder: 8,
+  employee: StartupEmployeeType.Developer,
   recipe: []
 };
 export const I18nComponent: StartupComponent = {
@@ -147,6 +167,7 @@ export const I18nComponent: StartupComponent = {
   name: StartupComponentName.I18nComponent,
   productionCost: 4,
   sortOrder: 9,
+  employee: StartupEmployeeType.Developer,
   recipe: []
 };
 export const SearchAlgorithmComponent: StartupComponent = {
@@ -154,6 +175,7 @@ export const SearchAlgorithmComponent: StartupComponent = {
   name: StartupComponentName.SearchAlgorithmComponent,
   productionCost: 12,
   sortOrder: 10,
+  employee: StartupEmployeeType.Developer,
   recipe: []
 };
 export const CompressionComponent: StartupComponent = {
@@ -161,6 +183,7 @@ export const CompressionComponent: StartupComponent = {
   name: StartupComponentName.CompressionComponent,
   productionCost: 8,
   sortOrder: 8,
+  employee: StartupEmployeeType.Developer,
   recipe: []
 };
 
@@ -170,6 +193,7 @@ export const BlueprintComponent: StartupComponent = {
   name: StartupComponentName.BlueprintComponent,
   productionCost: 2,
   sortOrder: 0,
+  employee: StartupEmployeeType.Designer,
   recipe: []
 };
 export const WireframeComponent: StartupComponent = {
@@ -177,6 +201,7 @@ export const WireframeComponent: StartupComponent = {
   name: StartupComponentName.WireframeComponent,
   productionCost: 3,
   sortOrder: 1,
+  employee: StartupEmployeeType.Designer,
   recipe: []
 };
 export const GraphicsComponent: StartupComponent = {
@@ -184,6 +209,7 @@ export const GraphicsComponent: StartupComponent = {
   name: StartupComponentName.GraphicsComponent,
   productionCost: 4,
   sortOrder: 2,
+  employee: StartupEmployeeType.Designer,
   recipe: []
 };
 export const UIElementModule: StartupComponent = {
@@ -191,6 +217,7 @@ export const UIElementModule: StartupComponent = {
   name: StartupComponentName.UIElementModule,
   productionCost: 6,
   sortOrder: 3,
+  employee: StartupEmployeeType.Designer,
   recipe: [
     { component: BlueprintComponent, count: 1 },
     { component: GraphicsComponent, count: 1 }
@@ -201,6 +228,7 @@ export const UISetModule: StartupComponent = {
   name: StartupComponentName.UISetModule,
   productionCost: 18,
   sortOrder: 4,
+  employee: StartupEmployeeType.Designer,
   recipe: [
     { component: WireframeComponent, count: 2 },
     { component: UIElementModule, count: 2 }
@@ -211,6 +239,7 @@ export const ResponsiveUIModule: StartupComponent = {
   name: StartupComponentName.ResponsiveUIModule,
   productionCost: 18,
   sortOrder: 5,
+  employee: StartupEmployeeType.Designer,
   recipe: [
     { component: WireframeComponent, count: 2 },
     { component: UIElementModule, count: 2 }
@@ -221,6 +250,7 @@ export const DocumentationComponent: StartupComponent = {
   name: StartupComponentName.DocumentationComponent,
   productionCost: 12,
   sortOrder: 6,
+  employee: StartupEmployeeType.Designer,
   recipe: []
 };
 export const DesignGuidelinesModule: StartupComponent = {
@@ -228,6 +258,7 @@ export const DesignGuidelinesModule: StartupComponent = {
   name: StartupComponentName.DesignGuidelinesModule,
   productionCost: 90,
   sortOrder: 7,
+  employee: StartupEmployeeType.Designer,
   recipe: [
     { component: DocumentationComponent, count: 3 },
     { component: ResponsiveUIModule, count: 3 }
@@ -240,6 +271,7 @@ export const VirtualHardwareComponent: StartupComponent = {
   name: StartupComponentName.VirtualHardwareComponent,
   productionCost: 4,
   sortOrder: 0,
+  employee: StartupEmployeeType.SysAdmin,
   recipe: []
 };
 export const OperatingSystemComponent: StartupComponent = {
@@ -247,6 +279,7 @@ export const OperatingSystemComponent: StartupComponent = {
   name: StartupComponentName.OperatingSystemComponent,
   productionCost: 4,
   sortOrder: 1,
+  employee: StartupEmployeeType.SysAdmin,
   recipe: []
 };
 export const FirewallComponent: StartupComponent = {
@@ -254,6 +287,7 @@ export const FirewallComponent: StartupComponent = {
   name: StartupComponentName.FirewallComponent,
   productionCost: 4,
   sortOrder: 2,
+  employee: StartupEmployeeType.SysAdmin,
   recipe: []
 };
 export const ProcessManagementComponent: StartupComponent = {
@@ -261,6 +295,7 @@ export const ProcessManagementComponent: StartupComponent = {
   name: StartupComponentName.ProcessManagementComponent,
   productionCost: 6,
   sortOrder: 3,
+  employee: StartupEmployeeType.SysAdmin,
   recipe: []
 };
 export const ContinuousIntegrationComponent: StartupComponent = {
@@ -268,6 +303,7 @@ export const ContinuousIntegrationComponent: StartupComponent = {
   name: StartupComponentName.ContinuousIntegrationComponent,
   productionCost: 8,
   sortOrder: 4,
+  employee: StartupEmployeeType.SysAdmin,
   recipe: []
 };
 export const CronJobComponent: StartupComponent = {
@@ -275,6 +311,7 @@ export const CronJobComponent: StartupComponent = {
   name: StartupComponentName.CronJobComponent,
   productionCost: 3,
   sortOrder: 5,
+  employee: StartupEmployeeType.SysAdmin,
   recipe: []
 };
 export const VirtualContainerModule: StartupComponent = {
@@ -282,6 +319,7 @@ export const VirtualContainerModule: StartupComponent = {
   name: StartupComponentName.VirtualContainerModule,
   productionCost: 25,
   sortOrder: 6,
+  employee: StartupEmployeeType.SysAdmin,
   recipe: [
     { component: VirtualHardwareComponent, count: 1 },
     { component: OperatingSystemComponent, count: 1 },
@@ -295,6 +333,7 @@ export const ClusterModule: StartupComponent = {
   name: StartupComponentName.ClusterModule,
   productionCost: 115,
   sortOrder: 7,
+  employee: StartupEmployeeType.SysAdmin,
   recipe: [
     { component: VirtualContainerModule, count: 3 },
     { component: FirewallComponent, count: 10 }
@@ -305,6 +344,7 @@ export const SwarmManagementModule: StartupComponent = {
   name: StartupComponentName.SwarmManagementModule,
   productionCost: 140,
   sortOrder: 8,
+  employee: StartupEmployeeType.SysAdmin,
   recipe: [
     { component: ClusterModule, count: 1 },
     { component: VirtualContainerModule, count: 1 }
@@ -317,6 +357,7 @@ export const InterfaceModule: StartupComponent = {
   name: StartupComponentName.InterfaceModule,
   productionCost: 15,
   sortOrder: 0,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: UIElementModule, count: 2 },
     { component: WireframeComponent, count: 1 }
@@ -327,6 +368,7 @@ export const FrontendModule: StartupComponent = {
   name: StartupComponentName.FrontendModule,
   productionCost: 21,
   sortOrder: 1,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: UIElementModule, count: 1 },
     { component: InterfaceModule, count: 1 }
@@ -337,6 +379,7 @@ export const BackendModule: StartupComponent = {
   name: StartupComponentName.BackendModule,
   productionCost: 10,
   sortOrder: 2,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: BackendComponent, count: 1 },
     { component: NetworkComponent, count: 1 }
@@ -347,6 +390,7 @@ export const InputModule: StartupComponent = {
   name: StartupComponentName.InputModule,
   productionCost: 6,
   sortOrder: 3,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: UIComponent, count: 1 },
     { component: BackendComponent, count: 1 }
@@ -357,6 +401,7 @@ export const StorageModule: StartupComponent = {
   name: StartupComponentName.StorageModule,
   productionCost: 8,
   sortOrder: 4,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: FilesystemComponent, count: 1 },
     { component: BackendComponent, count: 1 }
@@ -367,6 +412,7 @@ export const ContentManagementModule: StartupComponent = {
   name: StartupComponentName.ContentManagementModule,
   productionCost: 37,
   sortOrder: 5,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: FrontendModule, count: 1 },
     { component: InputModule, count: 1 },
@@ -378,6 +424,7 @@ export const VideoPlaybackModule: StartupComponent = {
   name: StartupComponentName.VideoPlaybackModule,
   productionCost: 45,
   sortOrder: 6,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: VideoComponent, count: 1 },
     { component: FrontendModule, count: 1 },
@@ -389,6 +436,7 @@ export const SeoModule: StartupComponent = {
   name: StartupComponentName.SeoModule,
   productionCost: 24,
   sortOrder: 7,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: FrontendModule, count: 1 },
     { component: SemanticComponent, count: 1 }
@@ -399,6 +447,7 @@ export const EmailModule: StartupComponent = {
   name: StartupComponentName.EmailModule,
   productionCost: 12,
   sortOrder: 8,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: SmtpComponent, count: 1 },
     { component: BackendComponent, count: 1 }
@@ -409,6 +458,7 @@ export const DatabaseLayerModule: StartupComponent = {
   name: StartupComponentName.DatabaseLayerModule,
   productionCost: 14,
   sortOrder: 9,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: DatabaseComponent, count: 1 },
     { component: BackendComponent, count: 1 },
@@ -420,6 +470,7 @@ export const NotificationModule: StartupComponent = {
   name: StartupComponentName.NotificationModule,
   productionCost: 18,
   sortOrder: 10,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: UIComponent, count: 1 },
     { component: BackendComponent, count: 1 },
@@ -431,6 +482,7 @@ export const AuthenticationModule: StartupComponent = {
   name: StartupComponentName.AuthenticationModule,
   productionCost: 22,
   sortOrder: 11,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: DatabaseComponent, count: 1 },
     { component: EncryptionComponent, count: 1 },
@@ -442,6 +494,7 @@ export const ApiClientModule: StartupComponent = {
   name: StartupComponentName.ApiClientModule,
   productionCost: 40,
   sortOrder: 17,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: BackendModule, count: 1 },
     { component: DatabaseLayerModule, count: 1 },
@@ -453,6 +506,7 @@ export const PaymentGatewayModule: StartupComponent = {
   name: StartupComponentName.PaymentGatewayModule,
   productionCost: 76,
   sortOrder: 12,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: DatabaseLayerModule, count: 1 },
     { component: ApiClientModule, count: 1 },
@@ -464,6 +518,7 @@ export const LocalizationModule: StartupComponent = {
   name: StartupComponentName.LocalizationModule,
   productionCost: 25,
   sortOrder: 13,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: I18nComponent, count: 1 },
     { component: FrontendModule, count: 1 }
@@ -474,6 +529,7 @@ export const SearchModule: StartupComponent = {
   name: StartupComponentName.SearchModule,
   productionCost: 20,
   sortOrder: 14,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: DatabaseComponent, count: 1 },
     { component: SearchAlgorithmComponent, count: 1 },
@@ -485,6 +541,7 @@ export const BandwidthCompressionModule: StartupComponent = {
   name: StartupComponentName.BandwidthCompressionModule,
   productionCost: 18,
   sortOrder: 15,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: CompressionComponent, count: 1 },
     { component: NetworkComponent, count: 1 },
@@ -496,6 +553,7 @@ export const CodeOptimizationModule: StartupComponent = {
   name: StartupComponentName.CodeOptimizationModule,
   productionCost: 90,
   sortOrder: 16,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: [
     { component: BackendModule, count: 2 },
     { component: DatabaseLayerModule, count: 2 },
@@ -509,6 +567,7 @@ export const CopywritingComponent: StartupComponent = {
   name: StartupComponentName.CopywritingComponent,
   productionCost: 4,
   sortOrder: 0,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: []
 };
 export const TextFormatComponent: StartupComponent = {
@@ -516,6 +575,7 @@ export const TextFormatComponent: StartupComponent = {
   name: StartupComponentName.TextFormatComponent,
   productionCost: 4,
   sortOrder: 1,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: []
 };
 export const ImageFormatComponent: StartupComponent = {
@@ -523,6 +583,7 @@ export const ImageFormatComponent: StartupComponent = {
   name: StartupComponentName.ImageFormatComponent,
   productionCost: 4,
   sortOrder: 2,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: []
 };
 export const UserFeedbackComponent: StartupComponent = {
@@ -530,6 +591,7 @@ export const UserFeedbackComponent: StartupComponent = {
   name: StartupComponentName.UserFeedbackComponent,
   productionCost: 8,
   sortOrder: 3,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: []
 };
 export const SurveyComponent: StartupComponent = {
@@ -537,6 +599,7 @@ export const SurveyComponent: StartupComponent = {
   name: StartupComponentName.SurveyComponent,
   productionCost: 4,
   sortOrder: 4,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: []
 };
 export const PhoneInterviewComponent: StartupComponent = {
@@ -544,6 +607,7 @@ export const PhoneInterviewComponent: StartupComponent = {
   name: StartupComponentName.PhoneInterviewComponent,
   productionCost: 6,
   sortOrder: 5,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: []
 };
 export const VideoFormatComponent: StartupComponent = {
@@ -551,6 +615,7 @@ export const VideoFormatComponent: StartupComponent = {
   name: StartupComponentName.VideoFormatComponent,
   productionCost: 8,
   sortOrder: 6,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: []
 };
 export const AudioFormatComponent: StartupComponent = {
@@ -558,6 +623,7 @@ export const AudioFormatComponent: StartupComponent = {
   name: StartupComponentName.AudioFormatComponent,
   productionCost: 8,
   sortOrder: 7,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: []
 };
 export const AnalyticsResearchComponent: StartupComponent = {
@@ -565,6 +631,7 @@ export const AnalyticsResearchComponent: StartupComponent = {
   name: StartupComponentName.AnalyticsResearchComponent,
   productionCost: 12,
   sortOrder: 8,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: []
 };
 export const ContractAgreementComponent: StartupComponent = {
@@ -572,6 +639,7 @@ export const ContractAgreementComponent: StartupComponent = {
   name: StartupComponentName.ContractAgreementComponent,
   productionCost: 12,
   sortOrder: 9,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: []
 };
 export const ABTestingComponent: StartupComponent = {
@@ -579,6 +647,7 @@ export const ABTestingComponent: StartupComponent = {
   name: StartupComponentName.ABTestingComponent,
   productionCost: 10,
   sortOrder: 10,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: []
 };
 export const BehaviorObservationComponent: StartupComponent = {
@@ -586,6 +655,7 @@ export const BehaviorObservationComponent: StartupComponent = {
   name: StartupComponentName.BehaviorObservationComponent,
   productionCost: 12,
   sortOrder: 11,
+  employee: StartupEmployeeType.LeadDeveloper,
   recipe: []
 };
 
