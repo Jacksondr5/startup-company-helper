@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Jacksondr5_startup-company-helper&metric=alert_status)](https://sonarcloud.io/dashboard?id=Jacksondr5_startup-company-helper)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and as such has all the scripts you'd expect.
 
 # Motivations
